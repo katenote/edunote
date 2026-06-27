@@ -22,16 +22,12 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
-
-    /* NAV */
-    .nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border); }
+    .nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border); }
     .nav-logo { font-family: 'Gowun Batang', serif; font-size: 17px; font-weight: 700; color: var(--text-primary); text-decoration: none; }
     .nav-logo span { color: var(--blue); }
     .nav-links { display: flex; gap: 1.5rem; list-style: none; }
     .nav-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
     .nav-links a:hover { color: var(--blue); }
-
-    /* HERO */
     .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 960px; margin: 0 auto; padding: 4rem 2rem 3rem; align-items: center; }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--blue); background: var(--blue-light); padding: 4px 10px; border-radius: 20px; margin-bottom: 1rem; }
     .hero-title { font-family: 'Gowun Batang', serif; font-size: 34px; font-weight: 700; line-height: 1.35; color: var(--text-primary); margin-bottom: 0.75rem; letter-spacing: -0.5px; }
@@ -42,10 +38,8 @@
     .btn-primary:hover { opacity: 0.88; }
     .btn-ghost { background: transparent; color: var(--blue); border: 1px solid var(--blue-border); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 13px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; display: inline-block; transition: background 0.15s; }
     .btn-ghost:hover { background: var(--blue-light); }
-
-    /* HERO VISUAL */
     .hero-visual { position: relative; height: 220px; display: flex; align-items: center; justify-content: center; }
-    .notebook { background: var(--white); border-radius: 12px; border: 0.5px solid var(--border); width: 200px; height: 160px; padding: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .notebook { background: var(--white); border-radius: 12px; border: 0.5px solid var(--border); width: 200px; height: 160px; padding: 16px; }
     .notebook-pills { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
     .pill { font-size: 9px; padding: 2px 7px; border-radius: 20px; font-weight: 500; }
     .pill-kr { background: #EEF4FF; color: #4F8EF7; }
@@ -57,223 +51,368 @@
     .nb-line.short { width: 40%; background: #D1FAE5; }
     .nb-line.w80 { width: 80%; background: #C7D9FD; }
     .nb-line.w50 { width: 50%; background: #FEF3C7; }
-    .float-card { position: absolute; background: var(--white); border-radius: 10px; border: 0.5px solid var(--border); padding: 10px 14px; font-size: 11px; color: #374151; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .float-card { position: absolute; background: var(--white); border-radius: 10px; border: 0.5px solid var(--border); padding: 10px 14px; font-size: 11px; color: #374151; }
     .float-card.top-right { top: 10px; right: 0; }
     .float-card.bottom-left { bottom: 10px; left: 0; }
     .fc-num { font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700; color: var(--blue); line-height: 1; }
     .fc-num.teal { color: var(--teal); }
     .fc-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-
-    /* STATS BAR */
-    .stats-bar { max-width: 960px; margin: 0 auto 2.5rem; padding: 0 2rem; display: flex; gap: 12px; }
-    .stat-item { background: var(--white); border: 0.5px solid var(--border-card); border-radius: 10px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; flex: 1; }
-    .stat-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .stat-num { font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700; color: var(--text-primary); line-height: 1; }
-    .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-    /* SEARCH */
-    .search-wrap { max-width: 520px; margin: 0 auto 1.5rem; padding: 0 2rem; }
-    .search-box { display: flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; transition: border-color 0.15s; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .search-wrap { max-width: 520px; margin: 0 auto 2rem; padding: 0 2rem; }
+    .search-box { display: flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; transition: border-color 0.15s; }
     .search-box:focus-within { border-color: var(--blue); }
     .search-box i { color: var(--text-muted); font-size: 16px; }
     .search-box input { border: none; outline: none; font-size: 14px; color: #374151; width: 100%; font-family: 'Noto Sans KR', sans-serif; background: transparent; }
     .search-box input::placeholder { color: #D1D5DB; }
-
-    /* CATEGORIES */
     .cats { max-width: 960px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; gap: 8px; flex-wrap: wrap; }
     .cat-btn { padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--text-secondary); transition: all 0.15s; font-family: 'Noto Sans KR', sans-serif; }
     .cat-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
     .cat-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
-
-    /* SECTION */
     .section { max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem; }
     .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.25rem; }
     .section-title { font-family: 'Gowun Batang', serif; font-size: 18px; font-weight: 700; color: var(--text-primary); }
     .section-count { font-size: 12px; color: var(--text-muted); }
-
-    /* GRID */
     .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .app-card { background: var(--white); border-radius: var(--radius-card); border: 0.5px solid var(--border-card); padding: 20px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s, transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; min-height: 180px; text-decoration: none; color: inherit; }
-    .app-card:hover { border-color: var(--blue-border); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(79,142,247,0.1); }
+    .app-card { background: var(--white); border-radius: var(--radius-card); border: 0.5px solid var(--border-card); padding: 20px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s, transform 0.2s; cursor: pointer; position: relative; min-height: 180px; text-decoration: none; color: inherit; }
+    .app-card:hover { border-color: var(--blue-border); transform: translateY(-2px); }
     .card-thumb { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .tb-blue   { background: #EEF4FF; }
-    .tb-green  { background: #D1FAE5; }
-    .tb-yellow { background: #FEF3C7; }
-    .tb-teal   { background: #D0F4F1; }
-    .tb-pink   { background: #FCE7F3; }
-    .tb-purple { background: #EDE9FE; }
+    .tb-blue { background: #EEF4FF; } .tb-green { background: #D1FAE5; } .tb-yellow { background: #FEF3C7; }
+    .tb-teal { background: #D0F4F1; } .tb-pink { background: #FCE7F3; } .tb-purple { background: #EDE9FE; }
     .card-cat { font-size: 10px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.5px; }
     .card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
     .card-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; flex: 1; }
     .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
     .tags { display: flex; gap: 4px; flex-wrap: wrap; }
     .tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; }
-    .tag-blue   { background: #EEF4FF; color: #4F8EF7; }
-    .tag-green  { background: #D1FAE5; color: #059669; }
-    .tag-yellow { background: #FEF3C7; color: #D97706; }
-    .tag-teal   { background: #D0F4F1; color: #0D9488; }
+    .tag-blue { background: #EEF4FF; color: #4F8EF7; } .tag-green { background: #D1FAE5; color: #059669; }
+    .tag-yellow { background: #FEF3C7; color: #D97706; } .tag-teal { background: #D0F4F1; color: #0D9488; }
     .run-btn { background: none; border: 1px solid var(--border); color: var(--blue); font-size: 11px; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: all 0.15s; white-space: nowrap; }
     .run-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
     .badge-new { position: absolute; top: 12px; right: 12px; background: var(--yellow); color: #92400E; font-size: 9px; font-weight: 500; padding: 2px 7px; border-radius: 20px; }
     .app-card.empty { border: 1.5px dashed var(--border); background: #FAFBFC; align-items: center; justify-content: center; gap: 8px; cursor: default; }
-    .app-card.empty:hover { transform: none; box-shadow: none; border-color: var(--blue-border); }
+    .app-card.empty:hover { transform: none; border-color: var(--blue-border); }
     .empty-icon { font-size: 22px; opacity: 0.25; }
     .empty-label { font-size: 11px; color: #D1D5DB; }
-
-    /* NO RESULT */
-    .no-result { text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: 13px; grid-column: 1 / -1; }
-    .no-result i { font-size: 32px; display: block; margin-bottom: 0.5rem; opacity: 0.3; }
-
-    /* FOOTER */
-    .footer { border-top: 0.5px solid var(--border-card); padding: 2.5rem 2rem; text-align: center; }
-    .footer-logo { font-family: 'Gowun Batang', serif; font-size: 15px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
+    .footer { border-top: 0.5px solid var(--border-card); padding: 2rem; text-align: center; }
+    .footer-logo { font-family: 'Gowun Batang', serif; font-size: 15px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
     .footer-logo span { color: var(--blue-border); }
-    .footer-sub { font-size: 11px; color: #D1D5DB; line-height: 1.8; }
-    .footer-sub a { color: var(--blue-border); text-decoration: none; }
-
-    /* RESPONSIVE */
+    .footer-sub { font-size: 11px; color: #D1D5DB; }
     @media (max-width: 720px) {
       .hero { grid-template-columns: 1fr; padding: 2.5rem 1.25rem 2rem; }
       .hero-visual { display: none; }
       .hero-title { font-size: 26px; }
       .app-grid { grid-template-columns: repeat(2, 1fr); }
       .cats, .section, .search-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .stats-bar { padding: 0 1.25rem; flex-wrap: wrap; }
-      .stat-item { flex: 1 1 calc(50% - 6px); }
     }
     @media (max-width: 480px) {
       .app-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .stat-item { flex: 1 1 100%; }
+    }
+
+    /* 윤리가이드 게이트 스타일 (에듀노트 테마 적용) */
+    #gate-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      display: none; /* JS에서 localStorage 확인 후 표시 여부 결정 */
+    }
+    #gate-container.show {
+      display: block;
+      animation: fadeIn 0.8s ease-in;
+    }
+    .fade-out {
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+    }
+    .gate-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .gate-header h1 {
+      font-family: 'Gowun Batang', serif;
+      font-size: 2.5rem;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+    .gate-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+    .guide-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .guide-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 1.8rem 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      border-left: 6px solid var(--blue);
+      border-top: 0.5px solid var(--border-card);
+      border-right: 0.5px solid var(--border-card);
+      border-bottom: 0.5px solid var(--border-card);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .guide-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+    .gc-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .gc-badge {
+      background-color: var(--blue-light);
+      color: var(--blue);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-right: 1rem;
+    }
+    .gc-header h2 {
+      font-size: 1.4rem;
+      color: var(--text-primary);
+    }
+    .guide-card h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+    }
+    .guide-card p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      text-align: justify;
+      word-break: keep-all;
+    }
+    .gate-footer {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+    #agree-button {
+      background-color: var(--blue);
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 1.2rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(79, 142, 247, 0.3);
+      transition: all 0.3s ease;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    #agree-button:hover {
+      background-color: #3B79DB;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(79, 142, 247, 0.4);
+    }
+    #agree-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 10px rgba(79, 142, 247, 0.3);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="#" class="nav-logo">에듀<span>노트</span></a>
-    <ul class="nav-links">
-      <li><a href="#apps">전체 앱</a></li>
-      <li><a href="#apps">카테고리</a></li>
-      <li><a href="#footer">소개</a></li>
-    </ul>
-  </nav>
+  <!-- 윤리 핵심가이드 게이트 영역 -->
+  <div id="gate-container">
+    <header class="gate-header">
+      <h1>윤리 핵심가이드</h1>
+      <p>생성형 AI를 안전하고 올바르게 사용하기 위한 약속</p>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="hero-eyebrow">
-        <i class="ti ti-notebook" aria-hidden="true"></i>
-        kate note · 교사
-      </div>
-      <h1 class="hero-title">수업을 <em>더 편리하게</em><br>만드는 작은 도구들</h1>
-      <p class="hero-sub">교육을 위해 직접 만든 웹앱 디지털 아카이브.<br>수업, 학급 운영, AI 활용, 창체까지.</p>
-      <div class="hero-btns">
-        <a href="#apps" class="btn-primary">웹앱 둘러보기</a>
-        <a href="#apps" class="btn-ghost">최신 앱 보기</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="notebook">
-        <div class="notebook-pills">
-          <span class="pill pill-kr">국어</span>
-          <span class="pill pill-ma">수학</span>
-          <span class="pill pill-so">사회</span>
-          <span class="pill pill-sc">과학</span>
+    <main class="guide-cards">
+      <div class="guide-card">
+        <div class="gc-header">
+          <span class="gc-badge">가이드 1</span>
+          <h2>활용 목적</h2>
         </div>
-        <div class="nb-line accent"></div>
-        <div class="nb-line"></div>
-        <div class="nb-line short"></div>
-        <div class="nb-line"></div>
-        <div class="nb-line w80"></div>
-        <div class="nb-line w50"></div>
+        <h3>생성형 AI를 쓰기 전, '왜' 쓰는지 말할 수 있어야 해요.</h3>
+        <p>생성형 AI를 사용하기 전에 '지금 내가 왜 쓰려고 하지?'라고 스스로 물어보세요. 생성형 AI는 내 생각을 대신해주는 게 아니라, 내 생각을 도와주는 도구임을 기억하세요. 모든 공부에 생성형 AI가 필요한 것은 아니므로, 지금 하는 활동에 생성형 AI를 사용하는 것이 나의 학습에 정말 도움이 될지 먼저 고민해요.</p>
       </div>
-      <div class="float-card top-right">
-        <div class="fc-num" id="app-count">0</div>
-        <div class="fc-label">제작한 웹앱</div>
+      
+      <div class="guide-card">
+        <div class="gc-header">
+          <span class="gc-badge">가이드 2</span>
+          <h2>주도적 학습</h2>
+        </div>
+        <h3>생성형 AI에게 물어보기 전, 내 생각을 먼저 말해요.</h3>
+        <p>막막할 때 바로 생성형 AI에게 묻고 싶은 마음이 들 수 있지만, 먼저 스스로 시도해 보아야 나의 성장에 도움이 돼요. 주제에 대해 내가 아는 것과 내 아이디어를 먼저 공책에 적거나 정리한 뒤에 생성형 AI를 활용하세요.</p>
       </div>
-      <div class="float-card bottom-left">
-        <div class="fc-num teal">AI</div>
-        <div class="fc-label">융합 도구 포함</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-icon tb-blue"><i class="ti ti-apps" style="color:#4F8EF7"></i></div>
-      <div>
-        <div class="stat-num" id="stat-total">0</div>
-        <div class="stat-label">전체 웹앱</div>
+      <div class="guide-card">
+        <div class="gc-header">
+          <span class="gc-badge">가이드 3</span>
+          <h2>비판적 검증</h2>
+        </div>
+        <h3>생성형 AI가 틀릴 수 있다는 점을 알아요.</h3>
+        <p>생성형 AI는 틀린 정보를 마치 사실인 것처럼 제시하기도 하므로, 알려준 내용은 항상 '정말 맞을까?' 하고 한 번 더 확인하는 습관을 가져요. 중요한 내용일수록 책을 찾아보거나 선생님께 여쭤보는 등 다른 방법으로도 꼭 다시 확인하세요.</p>
       </div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-icon tb-green"><i class="ti ti-category" style="color:#059669"></i></div>
-      <div>
-        <div class="stat-num" id="stat-cats">0</div>
-        <div class="stat-label">카테고리</div>
+
+      <div class="guide-card">
+        <div class="gc-header">
+          <span class="gc-badge">가이드 4</span>
+          <h2>사고의 확장</h2>
+        </div>
+        <h3>생성형 AI와 함께 상상하며 내 생각을 더 크게 키워요.</h3>
+        <p>생성형 AI를 내 생각의 범위를 넓혀주는 도구로 사용해보세요. 생성형 AI의 결과물을 그대로 사용하지 않고, 나의 경험과 생각을 더하여 나만의 색깔을 담은 최종 결과물을 만들어요.</p>
       </div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-icon tb-yellow"><i class="ti ti-sparkles" style="color:#D97706"></i></div>
-      <div>
-        <div class="stat-num" id="stat-new">0</div>
-        <div class="stat-label">최근 추가</div>
+
+      <div class="guide-card">
+        <div class="gc-header">
+          <span class="gc-badge">가이드 5</span>
+          <h2>안전과 관계</h2>
+        </div>
+        <h3>나의 정보와 비밀을 말하지 않아요.</h3>
+        <p>내가 입력한 정보는 어디에서 어떻게 사용될지 모르기 때문에 이름, 주소, 학교, 전화번호 같은 개인정보는 생성형 AI에게 알려주면 안돼요. 생성형 AI는 계산된 답변을 내놓는 프로그램이라 감정이 없어요. 나의 고민을 털어놓으며 지나치게 의지하기보다, 친구나 부모님, 선생님과의 실제 대화를 통해 마음을 나누어요.</p>
       </div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-icon tb-teal"><i class="ti ti-robot" style="color:#0D9488"></i></div>
-      <div>
-        <div class="stat-num" id="stat-ai">0</div>
-        <div class="stat-label">AI 융합 앱</div>
+
+      <div class="guide-card">
+        <div class="gc-header">
+          <span class="gc-badge">가이드 6</span>
+          <h2>투명성·윤리</h2>
+        </div>
+        <h3>생성형 AI의 도움을 받았다면 숨기지 않고 정직하게 이야기해요.</h3>
+        <p>어느 부분이 생성형 AI의 것이고 어느 부분이 나의 것인지 명확히 밝히는 것은 나 자신을 속이지 않는 정직한 태도예요. 생성형 AI를 쓴 사실을 정직하게 밝힐 때 나의 노력이 더 빛나고 가치 있게 인정받을 수 있어요.</p>
       </div>
-    </div>
+    </main>
+
+    <footer class="gate-footer">
+      <button id="agree-button">나는 윤리 핵심가이드를 빠짐없이 읽고 이를 실천하겠습니다.</button>
+      <div style="margin-top: 20px;">
+        <a href="terms.html" style="color: #9CA3AF; text-decoration: underline; font-size: 12px; margin-right: 15px;">이용약관 확인</a>
+        <a href="privacy.html" style="color: #9CA3AF; text-decoration: underline; font-size: 12px;">개인정보처리방침 확인</a>
+      </div>
+    </footer>
   </div>
 
-  <!-- SEARCH -->
-  <div class="search-wrap">
-    <div class="search-box">
-      <i class="ti ti-search" aria-hidden="true"></i>
-      <input type="text" id="search-input" placeholder="앱 이름, 설명, 태그로 검색..." />
+  <!-- 에듀노트 본 화면 영역 -->
+  <div id="edunote-main" style="display: none;">
+    <nav class="nav">
+      <a href="#" class="nav-logo">에듀<span>노트</span></a>
+      <ul class="nav-links">
+        <li><a href="#apps">전체 앱</a></li>
+        <li><a href="#apps">카테고리</a></li>
+        <li><a href="#footer">소개</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="hero-eyebrow">
+          <i class="ti ti-notebook" aria-hidden="true"></i>
+          kate note · 교사
+        </div>
+        <h1 class="hero-title">수업을 <em>더 편리하게</em><br>만드는 작은 도구들</h1>
+        <p class="hero-sub">교육을 위해 직접 만든 웹앱 디지털 아카이브.<br>수업, 학급 운영, AI 활용, 창체까지.</p>
+        <div class="hero-btns">
+          <a href="#apps" class="btn-primary">웹앱 둘러보기</a>
+          <a href="#apps" class="btn-ghost">최신 앱 보기</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="notebook">
+          <div class="notebook-pills">
+            <span class="pill pill-kr">국어</span>
+            <span class="pill pill-ma">수학</span>
+            <span class="pill pill-so">사회</span>
+            <span class="pill pill-sc">과학</span>
+          </div>
+          <div class="nb-line accent"></div>
+          <div class="nb-line"></div>
+          <div class="nb-line short"></div>
+          <div class="nb-line"></div>
+          <div class="nb-line w80"></div>
+          <div class="nb-line w50"></div>
+        </div>
+        <div class="float-card top-right">
+          <div class="fc-num" id="app-count">4</div>
+          <div class="fc-label">제작한 웹앱</div>
+        </div>
+        <div class="float-card bottom-left">
+          <div class="fc-num teal">AI</div>
+          <div class="fc-label">융합 도구 포함</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <i class="ti ti-search" aria-hidden="true"></i>
+        <input type="text" id="search-input" placeholder="앱 이름, 설명, 태그로 검색..." />
+      </div>
     </div>
+
+    <div class="cats" id="cat-wrap">
+      <button class="cat-btn active" data-cat="전체">전체</button>
+      <button class="cat-btn" data-cat="AI">AI</button>
+      <button class="cat-btn" data-cat="국어">국어</button>
+      <button class="cat-btn" data-cat="수학">수학</button>
+      <button class="cat-btn" data-cat="사회">사회</button>
+      <button class="cat-btn" data-cat="역사·인문">역사·인문</button>
+      <button class="cat-btn" data-cat="융합·논술">융합·논술</button>
+      <button class="cat-btn" data-cat="학급운영">학급운영</button>
+      <button class="cat-btn" data-cat="창체">창체</button>
+    </div>
+
+    <section class="section" id="apps">
+      <div class="section-header">
+        <h2 class="section-title">전체 앱</h2>
+        <span class="section-count" id="visible-count"></span>
+      </div>
+      <div class="app-grid" id="app-grid"></div>
+    </section>
+
+    <footer class="footer" id="footer">
+      <div class="footer-logo">에듀<span>노트</span></div>
+      <div class="footer-sub">수업을 더 편리하게 만드는 작은 도구들 · kate note · 교사</div>
+      <div class="footer-links" style="margin-top: 10px;">
+        <a href="terms.html" style="color: #9CA3AF; text-decoration: none; font-size: 11px; margin-right: 15px;">이용약관</a>
+        <a href="privacy.html" style="color: #9CA3AF; text-decoration: none; font-size: 11px;">개인정보처리방침</a>
+      </div>
+    </footer>
   </div>
-
-  <!-- CATEGORIES -->
-  <div class="cats" id="cat-wrap">
-    <button class="cat-btn active" data-cat="전체">전체</button>
-    <button class="cat-btn" data-cat="AI">AI</button>
-    <button class="cat-btn" data-cat="국어">국어</button>
-    <button class="cat-btn" data-cat="수학">수학</button>
-    <button class="cat-btn" data-cat="사회">사회</button>
-    <button class="cat-btn" data-cat="과학">과학</button>
-    <button class="cat-btn" data-cat="역사·인문">역사·인문</button>
-    <button class="cat-btn" data-cat="융합·논술">융합·논술</button>
-    <button class="cat-btn" data-cat="학급운영">학급운영</button>
-    <button class="cat-btn" data-cat="창체">창체</button>
-  </div>
-
-  <!-- APPS -->
-  <section class="section" id="apps">
-    <div class="section-header">
-      <h2 class="section-title">전체 앱</h2>
-      <span class="section-count" id="visible-count"></span>
-    </div>
-    <div class="app-grid" id="app-grid"></div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer" id="footer">
-    <div class="footer-logo">에듀<span>노트</span></div>
-    <div class="footer-sub">
-      수업을 더 편리하게 만드는 작은 도구들<br>
-      kate note · 교사 · <a href="https://github.com/katenote">github.com/katenote</a>
-    </div>
-  </footer>
 
   <script>
-    /* ── 앱 데이터 ── 새 앱 추가 시 여기에만 추가하세요 */
+    // 윤리 가이드 게이트웨이 로직
+    document.addEventListener('DOMContentLoaded', () => {
+      const gateContainer = document.getElementById('gate-container');
+      const edunoteMain = document.getElementById('edunote-main');
+      const agreeButton = document.getElementById('agree-button');
+      
+      // localStorage 확인하여 동의 기록이 있으면 본 화면으로 직행
+      if (localStorage.getItem('ethicsAgreed') === 'true') {
+        edunoteMain.style.display = 'block';
+      } else {
+        gateContainer.classList.add('show');
+      }
+
+      if(agreeButton) {
+        agreeButton.addEventListener('click', () => {
+          // 동의 내역 저장 (브라우저를 껐다 켜도 유지)
+          localStorage.setItem('ethicsAgreed', 'true');
+          
+          gateContainer.classList.add('fade-out');
+          setTimeout(() => {
+            gateContainer.style.display = 'none';
+            edunoteMain.style.display = 'block';
+            edunoteMain.style.animation = 'fadeIn 0.8s ease-in';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 500);
+        });
+      }
+    });
+
     const APPS = [
       {
         title: "클래스룸 대시보드",
@@ -283,8 +422,7 @@
         thumb: "🏫",
         thumbCls: "tb-purple",
         url: "https://katenote.github.io/classroom-dashboard/",
-        isNew: false,
-        isAI: false
+        isNew: false
       },
       {
         title: "북마크 대시보드",
@@ -294,8 +432,7 @@
         thumb: "🔖",
         thumbCls: "tb-green",
         url: "https://katenote.github.io/bookmark-manager/",
-        isNew: false,
-        isAI: false
+        isNew: false
       },
       {
         title: "태양계 학습",
@@ -305,8 +442,7 @@
         thumb: "🪐",
         thumbCls: "tb-teal",
         url: "https://boisterous-concha-ced153.netlify.app/",
-        isNew: true,
-        isAI: false
+        isNew: true
       },
       {
         title: "구구단 학습",
@@ -316,43 +452,26 @@
         thumb: "✖️",
         thumbCls: "tb-yellow",
         url: "https://katenote.github.io/multiplication_table/",
-        isNew: false,
-        isAI: false
+        isNew: false
       }
     ];
 
-    /* ── 통계 ── */
-    const uniqueCats = [...new Set(APPS.map(a => a.cat))].length;
-    const newCount   = APPS.filter(a => a.isNew).length;
-    const aiCount    = APPS.filter(a => a.isAI).length;
-
-    document.getElementById('app-count').textContent  = APPS.length;
-    document.getElementById('stat-total').textContent = APPS.length;
-    document.getElementById('stat-cats').textContent  = uniqueCats;
-    document.getElementById('stat-new').textContent   = newCount;
-    document.getElementById('stat-ai').textContent    = aiCount;
-
-    /* ── 렌더링 ── */
-    const grid    = document.getElementById('app-grid');
+    const grid = document.getElementById('app-grid');
     const countEl = document.getElementById('visible-count');
+    const appCountEl = document.getElementById('app-count');
+    if(appCountEl) appCountEl.textContent = APPS.length;
 
     function renderCards(list) {
+      if(!grid) return;
       grid.innerHTML = '';
-
-      if (list.length === 0) {
-        grid.innerHTML = `<div class="no-result"><i class="ti ti-search-off"></i>검색 결과가 없습니다.</div>`;
-        countEl.textContent = '0개';
-        return;
-      }
-
       list.forEach(app => {
-        const tagsHtml  = app.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
+        const tagsHtml = app.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
         const badgeHtml = app.isNew ? '<span class="badge-new">NEW</span>' : '';
         const card = document.createElement('a');
         card.className = 'app-card';
-        card.href      = app.url;
-        card.target    = '_blank';
-        card.rel       = 'noopener noreferrer';
+        card.href = app.url;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
         card.innerHTML = `
           <div class="card-thumb ${app.thumbCls}">${app.thumb}</div>
           <div class="card-cat">${app.cat}</div>
@@ -366,49 +485,48 @@
         `;
         grid.appendChild(card);
       });
-
       const remainder = list.length % 3;
-      const empties   = remainder === 0 ? 0 : 3 - remainder;
+      const empties = remainder === 0 ? 0 : 3 - remainder;
       for (let i = 0; i < empties; i++) {
         const empty = document.createElement('div');
         empty.className = 'app-card empty';
         empty.innerHTML = `<div class="empty-icon">＋</div><div class="empty-label">앱 추가 예정</div>`;
         grid.appendChild(empty);
       }
-
-      countEl.textContent = `${list.length}개`;
+      if(countEl) countEl.textContent = `${list.length}개`;
     }
 
-    /* ── 필터 ── */
-    let currentCat   = '전체';
+    let currentCat = '전체';
     let currentQuery = '';
 
     function getFiltered() {
       return APPS.filter(app => {
-        const catMatch = currentCat === '전체' || app.cat === currentCat ||
-          app.tags.some(t => t.label === currentCat);
+        const catMatch = currentCat === '전체' || app.cat === currentCat || app.tags.some(t => t.label === currentCat);
         const q = currentQuery.toLowerCase();
-        const queryMatch = !q ||
-          app.title.toLowerCase().includes(q) ||
-          app.desc.toLowerCase().includes(q) ||
-          app.tags.some(t => t.label.toLowerCase().includes(q));
+        const queryMatch = !q || app.title.toLowerCase().includes(q) || app.desc.toLowerCase().includes(q) || app.tags.some(t => t.label.toLowerCase().includes(q));
         return catMatch && queryMatch;
       });
     }
 
-    document.getElementById('cat-wrap').addEventListener('click', e => {
-      const btn = e.target.closest('.cat-btn');
-      if (!btn) return;
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCat = btn.dataset.cat;
-      renderCards(getFiltered());
-    });
+    const catWrap = document.getElementById('cat-wrap');
+    if(catWrap) {
+      catWrap.addEventListener('click', e => {
+        const btn = e.target.closest('.cat-btn');
+        if (!btn) return;
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCat = btn.dataset.cat;
+        renderCards(getFiltered());
+      });
+    }
 
-    document.getElementById('search-input').addEventListener('input', e => {
-      currentQuery = e.target.value;
-      renderCards(getFiltered());
-    });
+    const searchInput = document.getElementById('search-input');
+    if(searchInput) {
+      searchInput.addEventListener('input', e => {
+        currentQuery = e.target.value;
+        renderCards(getFiltered());
+      });
+    }
 
     renderCards(APPS);
   </script>
