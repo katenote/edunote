@@ -300,24 +300,19 @@
   <div id="edunote-main" style="display: none;">
     <nav class="nav">
       <a href="#" class="nav-logo">에듀<span>노트</span></a>
-      <ul class="nav-links">
-        <li><a href="#apps">전체 앱</a></li>
-        <li><a href="#apps">카테고리</a></li>
-        <li><a href="#footer">소개</a></li>
-      </ul>
     </nav>
 
     <section class="hero">
       <div>
         <div class="hero-eyebrow">
           <i class="ti ti-notebook" aria-hidden="true"></i>
-          kate note · 교사
+          kate note
         </div>
         <h1 class="hero-title">수업을 <em>더 편리하게</em><br>만드는 작은 도구들</h1>
         <p class="hero-sub">교육을 위해 직접 만든 웹앱 디지털 아카이브.<br>수업, 학급 운영, AI 활용, 창체까지.</p>
         <div class="hero-btns">
-          <a href="#apps" class="btn-primary">웹앱 둘러보기</a>
-          <a href="#apps" class="btn-ghost">최신 앱 보기</a>
+          <a href="#apps" class="btn-primary" id="btn-browse">웹앱 둘러보기</a>
+          <a href="#apps" class="btn-ghost" id="btn-latest">최신 앱 보기</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -377,7 +372,7 @@
 
     <footer class="footer" id="footer">
       <div class="footer-logo">에듀<span>노트</span></div>
-      <div class="footer-sub">수업을 더 편리하게 만드는 작은 도구들 · kate note · 교사</div>
+      <div class="footer-sub">수업을 더 편리하게 만드는 작은 도구들<br>kate note · <a href="https://github.com/katenote">github.com/katenote</a></div>
       <div class="footer-links" style="margin-top: 10px;">
         <a href="terms.html" style="color: #9CA3AF; text-decoration: none; font-size: 11px; margin-right: 15px;">이용약관</a>
         <a href="privacy.html" style="color: #9CA3AF; text-decoration: none; font-size: 11px;">개인정보처리방침</a>
@@ -514,6 +509,10 @@
 
     function getFiltered() {
       return APPS.filter(app => {
+        if (currentCat === '최신') {
+          return app.isNew;
+        }
+        
         let matchCat = currentCat;
         if (currentCat === '사회' && (app.cat === '역사' || app.tags.some(t => t.label === '역사'))) {
           matchCat = app.cat; // 역사 앱이 사회 탭에서 보이도록 허용
@@ -544,6 +543,26 @@
     if(searchInput) {
       searchInput.addEventListener('input', e => {
         currentQuery = e.target.value;
+        renderCards(getFiltered());
+      });
+    }
+
+    const btnBrowse = document.getElementById('btn-browse');
+    if(btnBrowse) {
+      btnBrowse.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('.cat-btn[data-cat="전체"]');
+        if(allBtn) allBtn.classList.add('active');
+        currentCat = '전체';
+        renderCards(getFiltered());
+      });
+    }
+
+    const btnLatest = document.getElementById('btn-latest');
+    if(btnLatest) {
+      btnLatest.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        currentCat = '최신';
         renderCards(getFiltered());
       });
     }
