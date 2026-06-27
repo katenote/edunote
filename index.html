@@ -372,7 +372,7 @@
 
     <footer class="footer" id="footer">
       <div class="footer-logo">에듀<span>노트</span></div>
-      <div class="footer-sub">수업을 더 편리하게 만드는 작은 도구들<br>kate note · <a href="https://github.com/katenote" style="color: #9CA3AF; text-decoration: none;">github.com/katenote</a></div>
+      <div class="footer-sub">수업을 더 편리하게 만드는 작은 도구들 · kate note · 교사</div>
       <div class="footer-links" style="margin-top: 10px;">
         <a href="terms.html" style="color: #9CA3AF; text-decoration: none; font-size: 11px; margin-right: 15px;">이용약관</a>
         <a href="privacy.html" style="color: #9CA3AF; text-decoration: none; font-size: 11px;">개인정보처리방침</a>
@@ -473,6 +473,16 @@
         url: "https://edu-note.my.canva.site/bt70zrd7d1ma2a19",
         isNew: true,
         isAI: false
+      },
+      {
+        title: "에코 챌린지",
+        cat: "창체",
+        desc: "우리의 작은 실천이 지구를 살려요. 환경 보호 챌린지.",
+        tags: [{ label: "환경", cls: "tag-green" }],
+        thumb: "🌍",
+        thumbCls: "tb-green",
+        url: "https://eco-challenge-six.vercel.app/",
+        isNew: true
       }
     ];
     const grid = document.getElementById('app-grid');
@@ -520,10 +530,6 @@
 
     function getFiltered() {
       return APPS.filter(app => {
-        if (currentCat === '최신') {
-          return app.isNew;
-        }
-        
         let matchCat = currentCat;
         if (currentCat === '사회' && (app.cat === '역사' || app.tags.some(t => t.label === '역사'))) {
           matchCat = app.cat; // 역사 앱이 사회 탭에서 보이도록 허용
@@ -554,26 +560,6 @@
     if(searchInput) {
       searchInput.addEventListener('input', e => {
         currentQuery = e.target.value;
-        renderCards(getFiltered());
-      });
-    }
-
-    const btnBrowse = document.getElementById('btn-browse');
-    if(btnBrowse) {
-      btnBrowse.addEventListener('click', () => {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        const allBtn = document.querySelector('.cat-btn[data-cat="전체"]');
-        if(allBtn) allBtn.classList.add('active');
-        currentCat = '전체';
-        renderCards(getFiltered());
-      });
-    }
-
-    const btnLatest = document.getElementById('btn-latest');
-    if(btnLatest) {
-      btnLatest.addEventListener('click', () => {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        currentCat = '최신';
         renderCards(getFiltered());
       });
     }
