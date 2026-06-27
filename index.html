@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>에듀노트 — 수업을 더 편리하게 만드는 작은 도구들</title>
+  <meta name="description" content="교육을 위해 직접 만든 웹앱 디지털 아카이브. 수업, 학급 운영, AI 활용, 창체까지." />
+  <meta property="og:title" content="에듀노트" />
+  <meta property="og:description" content="수업을 더 편리하게 만드는 작은 도구들" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #4F8EF7;
+      --blue-light: #EEF4FF;
+      --blue-border: #C7D9FD;
+      --teal: #8ED1C6;
+      --yellow: #FFD166;
+      --bg: #F0F4F8;
+      --white: #ffffff;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --border: #E5E7EB;
+      --border-card: #E9EBF0;
+      --radius-card: 14px;
+      --radius-btn: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Gowun Batang', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Gowun Batang', serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+    .hero-title em { font-style: normal; color: var(--blue); }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 0.75rem; }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-btn);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+      padding: 10px 20px;
+      border-radius: var(--radius-btn);
+      font-size: 13px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.15s;
+    }
+    .btn-ghost:hover { background: var(--blue-light); }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .notebook {
+      background: var(--white);
+      border-radius: 12px;
+      border: 0.5px solid var(--border);
+      width: 200px;
+      height: 160px;
+      padding: 16px;
+    }
+    .notebook-pills {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .pill-kr { background: #EEF4FF; color: #4F8EF7; }
+    .pill-ma { background: #FEF3C7; color: #D97706; }
+    .pill-so { background: #D1FAE5; color: #059669; }
+    .pill-sc { background: #D0F4F1; color: #0D9488; }
+
+    .nb-line {
+      height: 1px;
+      background: #EFF2F7;
+      margin-bottom: 10px;
+      border-radius: 1px;
+    }
+    .nb-line.accent { background: #C7D9FD; width: 60%; }
+    .nb-line.short { width: 40%; background: #D1FAE5; }
+    .nb-line.w80 { width: 80%; background: #C7D9FD; }
+    .nb-line.w50 { width: 50%; background: #FEF3C7; }
+
+    .float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 10px;
+      border: 0.5px solid var(--border);
+      padding: 10px 14px;
+      font-size: 11px;
+      color: #374151;
+    }
+    .float-card.top-right { top: 10px; right: 0; }
+    .float-card.bottom-left { bottom: 10px; left: 0; }
+    .fc-num {
+      font-family: 'Gowun Batang', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .fc-num.teal { color: var(--teal); }
+    .fc-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── SEARCH ── */
+    .search-wrap {
+      max-width: 520px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      transition: border-color 0.15s;
+    }
+    .search-box:focus-within { border-color: var(--blue); }
+    .search-box i { color: var(--text-muted); font-size: 16px; }
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: #374151;
+      width: 100%;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: transparent;
+    }
+    .search-box input::placeholder { color: #D1D5DB; }
+
+    /* ── CATEGORIES ── */
+    .cats {
+      max-width: 960px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .cat-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text-secondary);
+      transition: all 0.15s;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .cat-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .cat-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+
+    /* ── APP SECTION ── */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-family: 'Gowun Batang', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .section-count { font-size: 12px; color: var(--text-muted); }
+
+    /* ── GRID ── */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .app-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      border: 0.5px solid var(--border-card);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.15s, transform 0.2s;
+      cursor: pointer;
+      position: relative;
+      min-height: 180px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .app-card:hover {
+      border-color: var(--blue-border);
+      transform: translateY(-2px);
+    }
+    .card-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .tb-blue   { background: #EEF4FF; }
+    .tb-green  { background: #D1FAE5; }
+    .tb-yellow { background: #FEF3C7; }
+    .tb-teal   { background: #D0F4F1; }
+    .tb-pink   { background: #FCE7F3; }
+    .tb-purple { background: #EDE9FE; }
+
+    .card-cat {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-weight: 300;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+    .tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .tag-blue   { background: #EEF4FF; color: #4F8EF7; }
+    .tag-green  { background: #D1FAE5; color: #059669; }
+    .tag-yellow { background: #FEF3C7; color: #D97706; }
+    .tag-teal   { background: #D0F4F1; color: #0D9488; }
+
+    .run-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--blue);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: all 0.15s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .run-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+    .badge-new {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--yellow);
+      color: #92400E;
+      font-size: 9px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    /* 빈 슬롯 */
+    .app-card.empty {
+      border: 1.5px dashed var(--border);
+      background: #FAFBFC;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: default;
+    }
+    .app-card.empty:hover { transform: none; border-color: var(--blue-border); }
+    .empty-icon { font-size: 22px; opacity: 0.25; }
+    .empty-label { font-size: 11px; color: #D1D5DB; }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 0.5px solid var(--border-card);
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Gowun Batang', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .footer-logo span { color: var(--blue-border); }
+    .footer-sub { font-size: 11px; color: #D1D5DB; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; padding: 2.5rem 1.25rem 2rem; }
+      .hero-visual { display: none; }
+      .hero-title { font-size: 26px; }
+      .app-grid { grid-template-columns: repeat(2, 1fr); }
+      .cats { padding: 0 1.25rem; }
+      .section { padding: 0 1.25rem 3rem; }
+      .search-wrap { padding: 0 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .app-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">에듀<span>노트</span></a>
+    <ul class="nav-links">
+      <li><a href="#apps">전체 앱</a></li>
+      <li><a href="#apps">카테고리</a></li>
+      <li><a href="#footer">소개</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        <i class="ti ti-notebook" aria-hidden="true"></i>
+        kate note · 교사
+      </div>
+      <h1 class="hero-title">수업을 <em>더 편리하게</em><br>만드는 작은 도구들</h1>
+      <p class="hero-sub">교육을 위해 직접 만든 웹앱 디지털 아카이브.<br>수업, 학급 운영, AI 활용, 창체까지.</p>
+      <div class="hero-btns">
+        <a href="#apps" class="btn-primary">웹앱 둘러보기</a>
+        <a href="#apps" class="btn-ghost">최신 앱 보기</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="notebook">
+        <div class="notebook-pills">
+          <span class="pill pill-kr">국어</span>
+          <span class="pill pill-ma">수학</span>
+          <span class="pill pill-so">사회</span>
+          <span class="pill pill-sc">과학</span>
+        </div>
+        <div class="nb-line accent"></div>
+        <div class="nb-line"></div>
+        <div class="nb-line short"></div>
+        <div class="nb-line"></div>
+        <div class="nb-line w80"></div>
+        <div class="nb-line w50"></div>
+      </div>
+      <div class="float-card top-right">
+        <div class="fc-num" id="app-count">0</div>
+        <div class="fc-label">제작한 웹앱</div>
+      </div>
+      <div class="float-card bottom-left">
+        <div class="fc-num teal">AI</div>
+        <div class="fc-label">융합 도구 포함</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <div class="search-box">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input type="text" id="search-input" placeholder="앱 이름, 설명, 태그로 검색..." />
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="cats" id="cat-wrap">
+    <button class="cat-btn active" data-cat="전체">전체</button>
+    <button class="cat-btn" data-cat="AI">AI</button>
+    <button class="cat-btn" data-cat="국어">국어</button>
+    <button class="cat-btn" data-cat="수학">수학</button>
+    <button class="cat-btn" data-cat="사회">사회</button>
+    <button class="cat-btn" data-cat="역사·인문">역사·인문</button>
+    <button class="cat-btn" data-cat="융합·논술">융합·논술</button>
+    <button class="cat-btn" data-cat="학급운영">학급운영</button>
+    <button class="cat-btn" data-cat="창체">창체</button>
+  </div>
+
+  <!-- APPS -->
+  <section class="section" id="apps">
+    <div class="section-header">
+      <h2 class="section-title">전체 앱</h2>
+      <span class="section-count" id="visible-count"></span>
+    </div>
+    <div class="app-grid" id="app-grid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="footer-logo">에듀<span>노트</span></div>
+    <div class="footer-sub">수업을 더 편리하게 만드는 작은 도구들 · kate note · 교사</div>
+  </footer>
+
+  <script>
+    /* ── 앱 데이터 ── 새 앱 추가 시 여기에만 추가하세요 */
+    const APPS = [
+      {
+        title: "AI 이미지 글쓰기",
+        cat: "국어",
+        desc: "AI 이미지를 보고 이야기를 써보는 창의적 글쓰기 도구.",
+        tags: [{ label: "국어", cls: "tag-green" }, { label: "AI", cls: "tag-blue" }],
+        thumb: "🤖",
+        thumbCls: "tb-green",
+        url: "#",
+        isNew: false
+      },
+      {
+        title: "모둠 편성 도우미",
+        cat: "학급운영",
+        desc: "학생 데이터 기반 모둠 편성과 역할 배분 자동화.",
+        tags: [{ label: "운영", cls: "tag-blue" }],
+        thumb: "✏️",
+        thumbCls: "tb-purple",
+        url: "#",
+        isNew: false
+      },
+      {
+        title: "그래프 탐구 놀이터",
+        cat: "수학",
+        desc: "막대·꺾은선 그래프를 인터랙티브하게 배우는 수학 앱.",
+        tags: [{ label: "수학", cls: "tag-teal" }],
+        thumb: "📊",
+        thumbCls: "tb-teal",
+        url: "#",
+        isNew: true
+      },
+      {
+        title: "감사 일기 생성기",
+        cat: "창체",
+        desc: "하루 감사를 AI와 함께 기록하는 인성 교육 도구.",
+        tags: [{ label: "창체", cls: "tag-yellow" }, { label: "AI", cls: "tag-blue" }],
+        thumb: "🌸",
+        thumbCls: "tb-pink",
+        url: "#",
+        isNew: false
+      }
+    ];
+
+    /* ── 렌더링 ── */
+    const grid = document.getElementById('app-grid');
+    const countEl = document.getElementById('visible-count');
+    const appCountEl = document.getElementById('app-count');
+
+    appCountEl.textContent = APPS.length;
+
+    function renderCards(list) {
+      grid.innerHTML = '';
+      list.forEach(app => {
+        const tagsHtml = app.tags.map(t =>
+          `<span class="tag ${t.cls}">${t.label}</span>`
+        ).join('');
+        const badgeHtml = app.isNew ? '<span class="badge-new">NEW</span>' : '';
+        const card = document.createElement('a');
+        card.className = 'app-card';
+        card.href = app.url;
+        card.target = app.url !== '#' ? '_blank' : '_self';
+        card.rel = 'noopener noreferrer';
+        card.innerHTML = `
+          <div class="card-thumb ${app.thumbCls}">${app.thumb}</div>
+          <div class="card-cat">${app.cat}</div>
+          <div class="card-title">${app.title}</div>
+          <div class="card-desc">${app.desc}</div>
+          <div class="card-footer">
+            <div class="tags">${tagsHtml}</div>
+            <span class="run-btn">실행 →</span>
+          </div>
+          ${badgeHtml}
+        `;
+        grid.appendChild(card);
+      });
+
+      /* 빈 슬롯: 3의 배수 맞추기 */
+      const remainder = list.length % 3;
+      const empties = remainder === 0 ? 0 : 3 - remainder;
+      for (let i = 0; i < empties; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'app-card empty';
+        empty.innerHTML = `<div class="empty-icon">＋</div><div class="empty-label">앱 추가 예정</div>`;
+        grid.appendChild(empty);
+      }
+
+      countEl.textContent = `${list.length}개`;
+    }
+
+    /* ── 필터 ── */
+    let currentCat = '전체';
+    let currentQuery = '';
+
+    function getFiltered() {
+      return APPS.filter(app => {
+        const catMatch = currentCat === '전체' || app.cat === currentCat ||
+          app.tags.some(t => t.label === currentCat);
+        const q = currentQuery.toLowerCase();
+        const queryMatch = !q ||
+          app.title.toLowerCase().includes(q) ||
+          app.desc.toLowerCase().includes(q) ||
+          app.tags.some(t => t.label.toLowerCase().includes(q));
+        return catMatch && queryMatch;
+      });
+    }
+
+    document.getElementById('cat-wrap').addEventListener('click', e => {
+      const btn = e.target.closest('.cat-btn');
+      if (!btn) return;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
+      renderCards(getFiltered());
+    });
+
+    document.getElementById('search-input').addEventListener('input', e => {
+      currentQuery = e.target.value;
+      renderCards(getFiltered());
+    });
+
+    /* 초기 렌더 */
+    renderCards(APPS);
+  </script>
+</body>
+</html>
