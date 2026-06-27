@@ -355,6 +355,7 @@
 
     <div class="cats" id="cat-wrap">
       <button class="cat-btn active" data-cat="전체">전체</button>
+      <button class="cat-btn" data-cat="학급운영">학급운영</button>
       <button class="cat-btn" data-cat="AI">AI</button>
       <button class="cat-btn" data-cat="국어">국어</button>
       <button class="cat-btn" data-cat="수학">수학</button>
@@ -513,9 +514,16 @@
 
     function getFiltered() {
       return APPS.filter(app => {
-        const catMatch = currentCat === '전체' || app.cat === currentCat || app.tags.some(t => t.label === currentCat);
+        let matchCat = currentCat;
+        if (currentCat === '사회' && (app.cat === '역사' || app.tags.some(t => t.label === '역사'))) {
+          matchCat = app.cat; // 역사 앱이 사회 탭에서 보이도록 허용
+        }
+        
+        const catMatch = currentCat === '전체' || app.cat === currentCat || app.tags.some(t => t.label === currentCat) || (currentCat === '사회' && (app.cat === '역사' || app.cat === '역사·인문' || app.tags.some(t => t.label.includes('역사'))));
+        
         const q = currentQuery.toLowerCase();
         const queryMatch = !q || app.title.toLowerCase().includes(q) || app.desc.toLowerCase().includes(q) || app.tags.some(t => t.label.toLowerCase().includes(q));
+        
         return catMatch && queryMatch;
       });
     }
